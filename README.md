@@ -16,17 +16,47 @@ The Device Protection Planner web app is designed for Asurion to help users trac
 
 - Node.js (v14 or later)
 - PNPM (Package Manager)
+- Supabase CLI
+- Docker
 
 #### 1. Clone the Repository
 
-`
-git clone <https://github.com/nevermyuk/asurion-device-protection-planner.git>`
+`git clone <https://github.com/nevermyuk/asurion-device-protection-planner.git>`
 
 #### 2. Install Dependencies
 
 `pnpm install`
 
-#### 3. Start the app
+#### 3. Setup database
+
+Install Supabase CLI:
+
+For macOS:
+`brew install supabase/tap/supabase`
+
+For Linux/Windows (via npm):
+`npm install -g supabase`
+
+For other installation methods, you can check the Supabase CLI documentation.
+
+#### 4. Start Supabase locally
+
+```bash
+supabase start
+supabase migration up
+```
+
+#### 5. Start the Supabase Instance
+
+`supabase start`
+
+#### 6. Setup Environment Variables
+
+Update the variables in the .env file with your Supabase project's configuration.
+
+`cp .env.example .env.local`
+
+## Running the app
 
 `pnpm dev`
 
