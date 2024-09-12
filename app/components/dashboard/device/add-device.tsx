@@ -1,6 +1,8 @@
 'use client';
 
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 import {
   Progress,
   Box,
@@ -250,6 +252,7 @@ const PlanForm = ({ formData, setFormData }: DeviceFormProps) => {
 
 export default function DeviceRegistrationForm() {
   const { data: session } = useSession();
+  const router = useRouter();
 
   const toast = useToast();
   const [step, setStep] = useState(1);
@@ -316,6 +319,7 @@ export default function DeviceRegistrationForm() {
         duration: 3000,
         isClosable: true,
       });
+      router.push('/dashboard');
     } else {
       toast({
         title: 'Error',
