@@ -1,36 +1,28 @@
 'use client';
 import React from 'react';
+import Link from 'next/link'; // Import Link from next/link
 
 import {
   chakra,
-  Box,
   Flex,
   useColorModeValue,
   VisuallyHidden,
   HStack,
   Button,
   useDisclosure,
-  VStack,
-  IconButton,
-  CloseButton,
 } from '@chakra-ui/react';
-import {
-  AiOutlineMenu,
-  AiFillHome,
-  AiOutlineInbox,
-  AiFillBell,
-} from 'react-icons/ai';
-import { BsFillCameraVideoFill, BsPlus } from 'react-icons/bs';
+import { AiFillBell } from 'react-icons/ai';
+import { BsPlus } from 'react-icons/bs';
 import { useSession } from 'next-auth/react';
 
 import { FiHome, FiBell, FiMail, FiSettings } from 'react-icons/fi';
 import { SignIn } from '../auth/client-auth-components';
 
 const navItems = [
-  { name: 'Dashboard', icon: FiHome },
-  { name: 'Notifications', icon: FiBell },
-  { name: 'Messages', icon: FiMail },
-  { name: 'Settings', icon: FiSettings },
+  { name: 'Dashboard', icon: FiHome, link: '/dashboard' },
+  { name: 'Notifications', icon: FiBell, link: '/dashboard' },
+  { name: 'Messages', icon: FiMail, link: '/dashboard' },
+  { name: 'Settings', icon: FiSettings, link: '/dashboard' },
 ];
 
 export default function App() {
@@ -49,72 +41,18 @@ export default function App() {
       >
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
           <HStack display="flex" spacing={3} alignItems="center">
-            <Box display={{ base: 'inline-flex', md: 'none' }}>
-              <IconButton
-                display={{ base: 'flex', md: 'none' }}
-                aria-label="Open menu"
-                fontSize="20px"
-                color="gray.800"
-                _dark={{ color: 'inherit' }}
-                variant="ghost"
-                icon={<AiOutlineMenu />}
-                onClick={mobileNav.onOpen}
-              />
-              <VStack
-                pos="absolute"
-                top={0}
-                left={0}
-                right={0}
-                display={mobileNav.isOpen ? 'flex' : 'none'}
-                flexDirection="column"
-                p={2}
-                pb={4}
-                m={2}
-                bg={bg}
-                spacing={3}
-                rounded="sm"
-                shadow="sm"
-              >
-                <CloseButton
-                  aria-label="Close menu"
-                  justifySelf="self-start"
-                  onClick={mobileNav.onClose}
-                />
-                <Button w="full" variant="ghost" leftIcon={<AiFillHome />}>
-                  Dashboard
-                </Button>
-                <Button w="full" variant="solid" leftIcon={<AiOutlineInbox />}>
-                  Inbox
-                </Button>
-                <Button
-                  w="full"
-                  variant="ghost"
-                  leftIcon={<BsFillCameraVideoFill />}
-                >
-                  Videos
-                </Button>
-              </VStack>
-            </Box>
-            <chakra.a
-              href="/"
-              title="Choc Home Page"
-              display="flex"
-              alignItems="center"
-            >
-              {/* <Logo /> */}
-              <VisuallyHidden>Choc</VisuallyHidden>
-            </chakra.a>
-
             <HStack spacing={3} display={{ base: 'none', md: 'inline-flex' }}>
               {navItems.map((item) => (
-                <Button
-                  key={item.name}
-                  variant="ghost"
-                  leftIcon={<item.icon />}
-                  size="sm"
-                >
-                  {item.name}
-                </Button>
+                <Link href={item.link} passHref key={item.name}>
+                  <Button
+                    variant="ghost"
+                    leftIcon={<item.icon />}
+                    size="sm"
+                    mb={2} // Margin-bottom for spacing between buttons
+                  >
+                    {item.name}
+                  </Button>
+                </Link>
               ))}
             </HStack>
           </HStack>

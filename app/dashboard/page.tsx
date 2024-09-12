@@ -8,9 +8,12 @@ import {
   Spinner,
   Alert,
   AlertIcon,
+  Button,
+  Flex,
 } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
 import PhoneCard from '../components/dashboard/device/phone-card';
+import Link from 'next/link';
 
 interface Device {
   device_id: string;
@@ -71,8 +74,14 @@ const Dashboard = () => {
 
   return (
     <Container maxW="container.xl" p={4}>
-      <Heading mb={4}>Device Dashboard</Heading>
-
+      <Flex mb={4} align="center" justify="space-between">
+        <Heading>Device Dashboard</Heading>
+        <Link href="/dashboard/device/register" passHref>
+          <Button colorScheme="teal" ml={4}>
+            Add New Device
+          </Button>
+        </Link>
+      </Flex>
       <Box mb={6}>
         <SimpleGrid columns={[1, 2, 3]} spacing={4}>
           {data?.map((device) => (
