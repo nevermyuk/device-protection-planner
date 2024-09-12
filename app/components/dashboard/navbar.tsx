@@ -9,13 +9,14 @@ import {
   VisuallyHidden,
   HStack,
   Button,
+  Text,
   useDisclosure,
 } from '@chakra-ui/react';
 import { BsPlus } from 'react-icons/bs';
 import { useSession } from 'next-auth/react';
 
 import { FiHome, FiBell, FiMail, FiSettings } from 'react-icons/fi';
-import { SignIn } from '../auth/client-auth-components';
+import { SignIn, SignOut } from '../auth/client-auth-components';
 
 const navItems = [
   { name: 'Dashboard', icon: FiHome, link: '/dashboard' },
@@ -73,7 +74,14 @@ export default function App() {
             >
               <VisuallyHidden>Notifications</VisuallyHidden>
             </chakra.a>
-            {!session?.user ? <SignIn /> : <span>{session.user.name}</span>}
+            {!session?.user ? (
+              <SignIn />
+            ) : (
+              <>
+                <Text>{session.user.name}</Text>
+                <SignOut />
+              </>
+            )}
           </HStack>
         </Flex>
       </chakra.header>
