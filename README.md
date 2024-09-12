@@ -1,36 +1,85 @@
+# Device Protection Planner App
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Objective
 
-First, run the development server:
+The Device Protection Planner web app is designed for Asurion to help users track protection plans for their devices and receive AI-generated recommendations for maintenance or upgrades. Key features of the app include:
+
+- Track Device Protection Plans: Users can add, view, and manage their device protection plans.
+- AI-Generated Recommendations: Receive tips, reminders, and upgrade suggestions based on device type and age.
+- Showcase: Demonstrates frontend design, API development, cloud resource awareness, and generative AI capabilities.
+
+## Setup and Installation
+
+### Prerequisites
+
+- Node.js (v14 or later)
+- PNPM (Package Manager)
+- Supabase CLI
+- Docker
+
+#### 1. Clone the Repository
+
+`git clone <https://github.com/nevermyuk/asurion-device-protection-planner.git>`
+
+#### 2. Install Dependencies
+
+`pnpm install`
+
+#### 3. Setup database
+
+Install Supabase CLI:
+
+For macOS:
+`brew install supabase/tap/supabase`
+
+For Linux/Windows (via npm):
+`npm install -g supabase`
+
+For other installation methods, you can check the Supabase CLI documentation.
+
+#### 4. Start Supabase locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+supabase start
+supabase migration up
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### 5. Start the Supabase Instance
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`supabase start`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### 6. Setup Environment Variables
 
-## Learn More
+Update the variables in the .env file with your Supabase project's configuration.
 
-To learn more about Next.js, take a look at the following resources:
+`cp .env.example .env.local`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Running the app
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`pnpm dev`
 
-## Deploy on Vercel
+Navigate to <http://localhost:3000> in your browser to view the app.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Build for Production
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To create a production build:
+`pnpm build`
+
+## Deployment
+
+## Contributions
+
+### 1. Create a new branch
+
+`git checkout -b your-feature-branch`
+
+### 2. Make Changes
+
+Edit, add, or delete files as necessary for your feature or fix.
+
+### 2. Commit changes
+
+When you’re ready to commit your changes, use Commitizen to ensure your commit message follows the conventional commit format:
+`npx cz`
