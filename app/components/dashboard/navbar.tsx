@@ -11,7 +11,6 @@ import {
   Button,
   useDisclosure,
 } from '@chakra-ui/react';
-import { AiFillBell } from 'react-icons/ai';
 import { BsPlus } from 'react-icons/bs';
 import { useSession } from 'next-auth/react';
 
@@ -72,7 +71,6 @@ export default function App() {
               rounded="sm"
               _hover={{ color: 'gray.800', _dark: { color: 'gray.600' } }}
             >
-              <AiFillBell />
               <VisuallyHidden>Notifications</VisuallyHidden>
             </chakra.a>
             {!session?.user ? <SignIn /> : <span>{session.user.name}</span>}

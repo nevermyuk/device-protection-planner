@@ -76,11 +76,17 @@ const Dashboard = () => {
     <Container maxW="container.xl" p={4}>
       <Flex mb={4} align="center" justify="space-between">
         <Heading>Device Dashboard</Heading>
-        <Link href="/dashboard/device/register" passHref>
-          <Button colorScheme="teal" ml={4}>
-            Add New Device
-          </Button>
-        </Link>
+        {!session?.user ? (
+          <Heading as="h2" size="lg" mb={4}>
+            Please sign in to get started
+          </Heading>
+        ) : (
+          <Link href="/dashboard/device/register" passHref>
+            <Button colorScheme="teal" ml={4}>
+              Add New Device
+            </Button>
+          </Link>
+        )}
       </Flex>
       <Box mb={6}>
         <SimpleGrid columns={[1, 2, 3]} spacing={4}>
@@ -90,7 +96,7 @@ const Dashboard = () => {
               imageUrl="https://imageio.forbes.com/specials-images/imageserve/66bcc543070b6a7e21f0fc74/US-TECH-APPLE-IPHONE/960x0.jpg?height=473&width=711&fit=bounds" // Replace with actual image URL if available
               device_name={device.device_name}
               purchase_date={device.purchase_date}
-              model_name={device.model_name}
+              model_name={device.device_model_name}
               warranty_period={device.warranty_period}
               additional_info={device.additional_info}
               plan_type_name={device.plan_type_name}

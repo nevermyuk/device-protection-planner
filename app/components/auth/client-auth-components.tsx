@@ -1,10 +1,20 @@
 'use client';
 
+import { Button } from '@chakra-ui/react';
 import { signIn, signOut } from 'next-auth/react';
 
 export function SignIn() {
-  return <button onClick={() => signIn()}>Sign In</button>;
+  return (
+    <Button colorScheme="teal" onClick={() => signIn()}>
+      Sign In
+    </Button>
+  );
 }
+
 export function SignOut() {
-  return <button onClick={() => signOut()}>Sign Out</button>;
+  return (
+    <Button colorScheme="red" onClick={() => signOut()}>
+      Sign Out
+    </Button>
+  );
 }
