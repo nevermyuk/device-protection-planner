@@ -13,7 +13,6 @@ import {
   VStack,
   IconButton,
   CloseButton,
-  Avatar,
 } from '@chakra-ui/react';
 import {
   AiOutlineMenu,
@@ -22,8 +21,10 @@ import {
   AiFillBell,
 } from 'react-icons/ai';
 import { BsFillCameraVideoFill, BsPlus } from 'react-icons/bs';
+import { useSession } from 'next-auth/react';
 
 import { FiHome, FiBell, FiMail, FiSettings } from 'react-icons/fi';
+import { SignIn } from '../../auth/client-auth-components';
 
 const navItems = [
   { name: 'Dashboard', icon: FiHome },
@@ -33,6 +34,7 @@ const navItems = [
 ];
 
 export default function App() {
+  const { data: session } = useSession();
   const bg = useColorModeValue('white', 'gray.800');
   const mobileNav = useDisclosure();
 
@@ -135,12 +137,7 @@ export default function App() {
               <AiFillBell />
               <VisuallyHidden>Notifications</VisuallyHidden>
             </chakra.a>
-
-            <Avatar
-              size="sm"
-              name="Dan Abrahmov"
-              src="https://bit.ly/dan-abramov"
-            />
+            {!session?.user ? <SignIn /> : <span>{session.user.name}</span>}
           </HStack>
         </Flex>
       </chakra.header>

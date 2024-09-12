@@ -8,4 +8,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     url: process.env.SUPABASE_URL,
     secret: process.env.SUPABASE_SERVICE_ROLE_KEY,
   }),
+  callbacks: {
+    session({ session, user }) {
+      session.user.id = user.id;
+      return session;
+    },
+  },
 });

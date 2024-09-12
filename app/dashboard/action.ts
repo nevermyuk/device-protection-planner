@@ -2,13 +2,13 @@ import { createClient } from '@/utils/supabase/client';
 
 export async function fetchDeviceModels(
   selectedManufacturerId: string,
-): Promise<string[]> {
+): Promise<{ id: string; model: string }[]> {
   const supabase = createClient();
 
   // Fetch device models from the "device_models" table, filtering by manufacturer ID
   const { data, error } = await supabase
-    .from('device_models') // Ensure this matches your table name
-    .select('model')
+    .from('device_models')
+    .select('id, model')
     .eq('manufacturer_id', selectedManufacturerId); // Filter by manufacturer ID
 
   if (error) {
@@ -17,7 +17,7 @@ export async function fetchDeviceModels(
   }
 
   // Return the list of device models
-  return data?.map((item: { model: string }) => item.model) || [];
+  return data || [];
 }
 
 export async function fetchManufacturers(): Promise<
@@ -38,4 +38,20 @@ export async function fetchManufacturers(): Promise<
     id: item.id,
     name: item.name,
   }));
+}
+
+export async function fetchPlanTypes(): Promise<
+  { id: string; type_name: string }[]
+> {
+  const supabase = createClient();
+  const { data, error } = await supabase
+    .from('plan_types') // Ensure this matches your table name
+    .select('id, type_name'); // Select the columns you need
+
+  if (error) {
+    console.error('Error fetching plan types:', error);
+    return [];
+  }
+
+  return data || [];
 }

@@ -10,7 +10,7 @@ const Page = () => {
     <Container maxW="container.lg" py={10}>
       <Box textAlign="center">
         <Heading as="h1" mb={4}>
-          Page Title
+          Device Registration
         </Heading>
         <DeviceRegistrationForm />
       </Box>
