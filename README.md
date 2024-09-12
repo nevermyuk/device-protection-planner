@@ -8,7 +8,25 @@ The Device Protection Planner web app is designed for Asurion to help users trac
 
 - Track Device Protection Plans: Users can add, view, and manage their device protection plans.
 - AI-Generated Recommendations: Receive tips, reminders, and upgrade suggestions based on device type and age.
-- Showcase: Demonstrates frontend design, API development, cloud resource awareness, and generative AI capabilities.
+
+### Tasks
+
+- [x] User Authentication - Github OAuth
+- [x] Database Setup - Supabase
+- [ ] Device Management
+  - [x] Dashboard View
+  - [x] Registration - Lacks Form Validation
+  - [ ] Update
+  - [ ] Remove
+- [ ] Protection Plan Tracking
+  - [x] View
+  - [ ] Subscribe - Only able to add when registering new device
+  - [ ] Modify
+  - [ ] Unsubscribe
+- [x] AI-Generated Recommendations - OpenAI
+- [ ] Deployment to Cloud
+- [ ] Responsive Design for Different Devices
+- [ ] Error Handling and Data Validation
 
 ## Setup and Installation
 
