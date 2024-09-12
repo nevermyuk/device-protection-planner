@@ -1,4 +1,4 @@
-import SidebarWithHeader from '../components/ui/dashboard/navbar';
+import SidebarWithHeader from '../components/dashboard/navbar';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

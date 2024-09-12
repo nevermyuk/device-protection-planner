@@ -55,3 +55,18 @@ export async function fetchPlanTypes(): Promise<
 
   return data || [];
 }
+
+export async function getDeviceAndPlanInfo(userId: string) {
+  const supabase = createClient();
+
+  const { data, error } = await supabase.rpc('get_device_and_plan_info', {
+    user_id: userId,
+  });
+
+  if (error) {
+    console.error('Error fetching device and plan info:', error.message);
+    return null;
+  }
+
+  return data;
+}

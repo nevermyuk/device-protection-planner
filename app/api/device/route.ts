@@ -1,22 +1,38 @@
 import { createClient } from '@/utils/supabase/server';
 import { NextResponse } from 'next/server';
 
-// GET request to fetch devices from the database
-export async function GET() {
+// Define the GET handler
+export async function GET(req: Request) {
   try {
     const supabase = createClient();
-    // Fetch devices from Supabase
-    const { data, error } = await supabase.from('devices').select('*');
 
-    if (error) {
-      throw error;
+    // Extract userId from query parameters
+    const { searchParams } = new URL(req.url);
+    const userId = searchParams.get('userId');
+    if (!userId) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid userId' },
+        { status: 400 },
+      );
     }
 
-    return NextResponse.json(data, { status: 200 });
+    // Call the PostgreSQL function via Supabase RPC
+    const { data, error } = await supabase.rpc('get_device_and_plan_info', {
+      input_user_id: userId,
+    });
+    if (error) {
+      console.error('Error executing function:', error.message);
+      return NextResponse.json(
+        { success: false, error: 'Failed to fetch device info' },
+        { status: 400 },
+      );
+    }
+
+    return NextResponse.json({ success: true, data }, { status: 200 });
   } catch (error) {
-    console.error('Error fetching devices:', error);
+    console.error('Unhandled error:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to fetch devices' },
+      { success: false, error: 'Internal server error' },
       { status: 500 },
     );
   }

@@ -24,7 +24,7 @@ import { BsFillCameraVideoFill, BsPlus } from 'react-icons/bs';
 import { useSession } from 'next-auth/react';
 
 import { FiHome, FiBell, FiMail, FiSettings } from 'react-icons/fi';
-import { SignIn } from '../../auth/client-auth-components';
+import { SignIn } from '../auth/client-auth-components';
 
 const navItems = [
   { name: 'Dashboard', icon: FiHome },
